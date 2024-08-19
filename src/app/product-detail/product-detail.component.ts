@@ -44,7 +44,7 @@ export class ProductDetailComponent implements OnInit {
       this._apiService.deleteProduct(this.product.id).subscribe({
         next: () => {
           console.log('Producto eliminado');
-          this._router.navigate(['/products']); // Redirige a la lista de productos
+          this._router.navigate(['/products']);
         },
         error: (error: any) => {
           console.error('Error al eliminar el producto:', error);
