@@ -19,7 +19,16 @@
       [(ngModel)]="product.precio"
       name="precio"
       required
+      min="0"
+      max="10000"
     />
+    <!-- Mensaje de error para precio -->
+    <div
+      *ngIf="product.precio < 0 || product.precio > 10000"
+      class="text-danger"
+    >
+      El precio debe ser un número entre 0 y 10,000.
+    </div>
   </div>
   <div class="mb-3">
     <label for="imagen" class="form-label">URL de la imagen</label>
@@ -33,5 +42,11 @@
     />
   </div>
 
-  <button type="submit" class="btn btn-primary">Crear</button>
+  <button
+    type="submit"
+    class="btn btn-primary"
+    [disabled]="product.precio < 0 || product.precio > 10000"
+  >
+    {{ isEditMode ? "Actualizar" : "Crear" }}
+  </button>
 </form>

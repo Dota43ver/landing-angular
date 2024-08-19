@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { IProduct } from '../models/product.model';
 import { ApiService } from '../services/api.service';
 
@@ -14,7 +14,8 @@ export class ProductDetailComponent implements OnInit {
 
   constructor(
     private _route: ActivatedRoute,
-    private _apiService: ApiService
+    private _apiService: ApiService,
+    private _router: Router
   ) {}
 
   ngOnInit(): void {
@@ -36,5 +37,19 @@ export class ProductDetailComponent implements OnInit {
         console.log(error);
       },
     });
+  }
+
+  onDelete(): void {
+    if (this.product) {
+      this._apiService.deleteProduct(this.product.id).subscribe({
+        next: () => {
+          console.log('Producto eliminado');
+          this._router.navigate(['/products']); // Redirige a la lista de productos
+        },
+        error: (error: any) => {
+          console.error('Error al eliminar el producto:', error);
+        },
+      });
+    }
   }
 }

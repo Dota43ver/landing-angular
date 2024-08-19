@@ -39,8 +39,12 @@ export class CreateProductComponent implements OnInit {
   }
 
   onSubmit(): void {
+    if (this.product.precio < 0 || this.product.precio > 10000) {
+      alert('El precio debe ser un número entre 0 y 10,000.');
+      return;
+    }
+
     if (this.isEditMode && this.product.id !== 0) {
-      // Si estamos en modo de edición y el ID no es 0, actualiza el producto existente
       this.apiService.putProduct(this.product).subscribe(
         (response: IProduct) => {
           console.log('Producto actualizado:', response);
@@ -51,7 +55,6 @@ export class CreateProductComponent implements OnInit {
         }
       );
     } else {
-      // Si no estamos en modo de edición, crea un nuevo producto
       this.apiService.newProduct(this.product).subscribe(
         (response: IProduct) => {
           console.log('Producto creado:', response);

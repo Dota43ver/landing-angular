@@ -17,7 +17,21 @@
           class="btn btn-primary"
           [routerLink]="['/products']"
         >
-          volver a productos
+          Volver a productos
+        </button>
+        <button
+          type="button"
+          class="btn btn-outline-primary mt-2"
+          [routerLink]="['/edit-product', product.id]"
+        >
+          Editar
+        </button>
+        <button
+          type="button"
+          class="btn btn-outline-danger mt-2"
+          (click)="onDelete()"
+        >
+          Eliminar
         </button>
       </div>
     </div>
