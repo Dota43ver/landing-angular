@@ -31,7 +31,9 @@ export class ApiService {
     );
   }
 
-  public deleteProduct(id: number | string): Observable<IProduct> {
-    return this._httpClient.delete<IProduct>(`${this.baseUrl}/${id}`);
+  public deleteProduct(id: number | string): Observable<any> {
+    return this._httpClient.delete(`${this.baseUrl}/${id}`, {
+      responseType: 'text',
+    });
   }
 }

@@ -19,6 +19,28 @@
       >
         Ver
       </button>
+      <button
+        type="button"
+        class="btn btn-outline-primary"
+        [routerLink]="['/edit-product', product.id]"
+      >
+        Editar
+      </button>
+
+      <button
+        type="button"
+        class="btn btn-outline-danger"
+        (click)="onDelete(product.id)"
+      >
+        Eliminar
+      </button>
     </tr>
   </tbody>
 </table>
+<button
+  type="button"
+  class="btn btn-primary"
+  [routerLink]="['/create-product']"
+>
+  crear producto
+</button>
